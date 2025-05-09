@@ -1,0 +1,1 @@
+from .reader import Texto, salvar_texto, ler_texto
