@@ -14,7 +14,7 @@
 ```bash
 book_tales/
 ├── main.py        # Ponto de entrada do programa (menu interativo)
-└── reader.py      # Lógica de salvar e ler arquivos JSON
+└── texto.py      # Lógica de salvar e ler arquivos JSON
 ```
 
 ## 🚀 Como usar
