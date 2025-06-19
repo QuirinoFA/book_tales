@@ -1,4 +1,4 @@
-from universo import Universo
+from .universo import Universo
 
 def nome_universo_valido():
     while True:

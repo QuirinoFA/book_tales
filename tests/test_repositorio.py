@@ -217,6 +217,11 @@ def test_repositorio_deletar_universo(caminho_certo_json):
     universo_certo_deletar_nome = 'Phamelosoph'
     repositorio_certo_deletar_universo.deletar_universo(universo_certo_deletar_nome)
     assert repositorio_certo_deletar_universo.ler_arquivo() == arquivo_deletado_lista()
+    # Teste ERRO: arquivo inexistente
+    repositorio_inexistente_deletar_universo = RepositorioUniverso(caminho_certo_json)
+    universo_inexistente_deletarnome = 'Dragonlance'
+    with pytest.raises(UniversoNaoEncontrado):
+        repositorio_inexistente_deletar_universo.deletar_universo(universo_inexistente_deletarnome)
 
 
 @patch.object(RepositorioUniverso, 'ler_universo')

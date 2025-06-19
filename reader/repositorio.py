@@ -1,5 +1,5 @@
 import json
-from erros import ArquivoCorrompido, ArquivoNaoEncontrado, UniversoNaoEncontrado
+from .erros import ArquivoCorrompido, ArquivoNaoEncontrado, UniversoNaoEncontrado
 
 
 class RepositorioUniverso:

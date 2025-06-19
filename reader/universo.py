@@ -1,7 +1,7 @@
 import os
 import datetime
-from repositorio import RepositorioUniverso
-from erros import UniversoJaExiste
+from .repositorio import RepositorioUniverso
+from .erros import UniversoJaExiste
 
 
 caminho = os.path.join(*["C:\\", "Users", "felip", "OneDrive", "Documentos", "Tabela_Relacional.json"])
