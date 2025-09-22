@@ -1,7 +1,5 @@
 import pytest
-import json
 from reader import Universo, caminho
-from reader import RepositorioUniverso
 from unittest.mock import patch, MagicMock
 from reader import UniversoJaExiste
 

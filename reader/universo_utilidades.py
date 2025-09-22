@@ -1,4 +1,8 @@
+import logging
 from .universo import Universo
+
+
+logger = logging.getLogger(__name__)
 
 def nome_universo_valido():
     while True:
@@ -6,15 +10,18 @@ def nome_universo_valido():
         if n_v_nome:
             return n_v_nome
         else:
+            logger.warning(f'Nome {n_v_nome} de Universo inválido.')
             print('ERRO! Digite um nome para o universo!')
 
 def salvar_universo() ->None:
+    logger.info(f'Acesso para salvar Universo.')
     su_nome = nome_universo_valido()
     su_resumo = str(input('Resumo: '))
     su_salva = Universo()
     su_salva.criar(su_nome, su_resumo)
 
 def ler_universo() ->None:
+    logger.info(f'Acesso para ler Universo.')
     lu_nome = nome_universo_valido()
     lu_uni = Universo()
     lu_uni.ler(lu_nome)
@@ -24,6 +31,7 @@ def ler_universo() ->None:
     print(f'Alterado: {lu_uni.alterado}')
 
 def atualizar_universo() -> None:
+    logger.info(f'Acesso para atualizar Universo.')
     print('Velho Universo ', end='')
     vu_nome = nome_universo_valido()
     au_universo = Universo()
@@ -34,6 +42,7 @@ def atualizar_universo() -> None:
     au_universo.atualizar(au_nome, au_resumo)
 
 def deletar_universo() ->None:
+    logger.info(f'Acesso para deletar Universo.')
     du_nome = nome_universo_valido()
     du_universo = Universo()
     du_universo.ler(du_nome)
