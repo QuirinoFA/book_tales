@@ -1,9 +1,9 @@
 import pytest
 from sqlalchemy.orm import Session
 from unittest.mock import Mock
-from ..texts import Texto, RepositorioTexto
-from ..universes import Universo
-from .. erros import TextoNaoEncontrado
+from texts import Texto, RepositorioTexto
+from universes import Universo
+from erros import TextoNaoEncontrado
 
 
 @pytest.fixture(scope='function')

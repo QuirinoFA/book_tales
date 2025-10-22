@@ -1,6 +1,6 @@
 import logging
-from ..texts import RepositorioTexto, Texto
-from ..erros import TextoTituloEmBranco, TextoTituloGrande, TextoTextoEmBranco, TextoJaExiste
+from texts import RepositorioTexto, Texto
+from erros import TextoTituloEmBranco, TextoTituloGrande, TextoTextoEmBranco, TextoJaExiste
 
 
 logger = logging.getLogger(__name__)
@@ -14,7 +14,7 @@ def titulo_valido(titulo_texto:str) -> None:
         raise TextoTituloGrande()
     return None
 
-def dicionario_valido(dict_texto:dict) -> None:
+def dicionario_valido_texto(dict_texto:dict) -> None:
     titulo_valido(dict_texto.get('titulo'))
     if not dict_texto.get('texto'):
         logger.warning(f'Texto {dict_texto.get('titulo')} com texto em branco. Texto inválido.')
@@ -29,7 +29,7 @@ def texto_valido(repositorio:RepositorioTexto, titulo_texto:str) -> None:
 
 def salvar_texto(repositorio:RepositorioTexto, dict_texto:dict) -> Texto:
     logger.info('Iniciando a validação para o salvamento de texto.')
-    dicionario_valido(dict_texto)
+    dicionario_valido_texto(dict_texto)
     texto_valido(repositorio, dict_texto.get('titulo'))
     novo_texto = Texto()
     for k, v in dict_texto.items():
@@ -46,7 +46,7 @@ def ler_texto(repositorio:RepositorioTexto, titulo_texto:str) -> Texto | None:
 def atualizar_texto(repositorio:RepositorioTexto, vel_texto:str, dict_texto:dict) -> Texto:
     logger.info('Iniciando a validação para a atualização do texto.')
     titulo_valido(vel_texto)
-    dicionario_valido(dict_texto)
+    dicionario_valido_texto(dict_texto)
     if dict_texto.get('titulo') == vel_texto:
         atua_texto = repositorio.atualizar_texto(vel_texto, dict_texto)
         return atua_texto

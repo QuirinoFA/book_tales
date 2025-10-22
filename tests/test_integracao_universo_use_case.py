@@ -1,13 +1,13 @@
 import pytest
-from ..database import Base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, func
-from ..universes import Universo, RepositorioUniverso
-from ..texts import Texto
+from database import Base
+from universes import Universo, RepositorioUniverso
+from texts import Texto
 import copy
-from ..use_cases import (universo_valido, salvar_universo, ler_universo,
+from use_cases import (universo_valido, salvar_universo, ler_universo,
                          atualizar_universo, deletar_universo, id_universo)
-from ..erros import UniversoJaExiste, UniversoNaoEncontrado
+from erros import UniversoJaExiste, UniversoNaoEncontrado
 
 
 @pytest.fixture(scope='function')

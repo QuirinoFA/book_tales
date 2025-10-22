@@ -1,6 +1,6 @@
-from ..database import Base
 from sqlalchemy import (Column, Integer, String, Text, DateTime, func)
 from sqlalchemy.orm import relationship
+from database import Base
 from typing import TYPE_CHECKING
 
 

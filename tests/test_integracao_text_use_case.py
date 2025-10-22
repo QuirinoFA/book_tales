@@ -1,12 +1,12 @@
-import copy
 import pytest
-from ..database import Base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, func
-from ..texts import Texto, RepositorioTexto
-from ..universes import Universo, RepositorioUniverso
-from ..use_cases import texto_valido, salvar_texto, ler_texto, atualizar_texto, deletar_texto
-from ..erros import TextoJaExiste, TextoNaoEncontrado
+from database import Base
+from texts import Texto, RepositorioTexto
+from universes import Universo, RepositorioUniverso
+from use_cases import texto_valido, salvar_texto, ler_texto, atualizar_texto, deletar_texto
+from erros import TextoJaExiste, TextoNaoEncontrado
+import copy
 
 
 @pytest.fixture(scope='function')

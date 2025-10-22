@@ -1,9 +1,9 @@
 import pytest
-from ..use_cases import (titulo_valido, dicionario_valido, texto_valido, salvar_texto, ler_texto,
+from use_cases import (titulo_valido, dicionario_valido_texto, texto_valido, salvar_texto, ler_texto,
                          atualizar_texto, deletar_texto)
-from ..erros import TextoTituloEmBranco, TextoTituloGrande, TextoTextoEmBranco, TextoJaExiste
+from erros import TextoTituloEmBranco, TextoTituloGrande, TextoTextoEmBranco, TextoJaExiste
 from unittest.mock import Mock
-from ..texts import RepositorioTexto, Texto
+from texts import RepositorioTexto, Texto
 
 
 @pytest.fixture(scope='function')
@@ -48,11 +48,11 @@ def test_dicionario_texto_em_branco(test_dicionario_texto):
     dict_texto = test_dicionario_texto
     dict_texto['texto'] = ''
     with pytest.raises(TextoTextoEmBranco):
-        dicionario_valido(dict_texto)
+        dicionario_valido_texto(dict_texto)
 
 def test_dicionario_valido(test_dicionario_texto):
     dict_texto = test_dicionario_texto
-    assert dicionario_valido(dict_texto) is None
+    assert dicionario_valido_texto(dict_texto) is None
 
 def test_texto_ja_existe(test_dicionario_texto):
     texto = test_dicionario_texto['titulo']
@@ -156,7 +156,7 @@ def test_ler_titulo_grande():
     assert mock_repositorio.ler_texto.call_count == 0
 
 def test_atualizar_texto(test_texto, test_dicionario_texto):
-    titulo = 'Texto 2'
+    titulo = 'Texto 1'
     dict_texto = test_dicionario_texto
     mock_repositorio = Mock(spec=RepositorioTexto)
     mock_repositorio.atualizar_texto.return_value = test_texto

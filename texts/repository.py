@@ -1,7 +1,7 @@
 import logging
-from ..database import Session
+from database import Session
 from .model import Texto
-from ..erros import TextoNaoEncontrado
+from erros import TextoNaoEncontrado
 
 
 logger = logging.getLogger(__name__)

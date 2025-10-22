@@ -1,6 +1,6 @@
-from ..erros import UniversoNaoEncontrado
+from erros import UniversoNaoEncontrado
 import logging
-from ..database import Session
+from database import Session
 from .modelos import Universo
 
 

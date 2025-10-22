@@ -1,10 +1,10 @@
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from ..database import Base
-from ..universes import RepositorioUniverso, Universo
-from ..texts import Texto
-from ..erros import UniversoNaoEncontrado
+from database import Base
+from universes import RepositorioUniverso, Universo
+from texts import Texto
+from erros import UniversoNaoEncontrado
 
 
 @pytest.fixture(scope='function')

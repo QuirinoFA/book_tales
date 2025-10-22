@@ -1,9 +1,11 @@
+import copy
+
 import pytest
-from ..use_cases import (nome_valido, dicionario_valido, universo_valido, salvar_universo,
+from use_cases import (nome_valido, dicionario_valido_universo, universo_valido, salvar_universo,
                          ler_universo, atualizar_universo, deletar_universo, id_universo)
-from ..erros import (UniversoNomeEmBranco, UniversoNomeGrande, UniversoResumoEmBranco,
+from erros import (UniversoNomeEmBranco, UniversoNomeGrande, UniversoResumoEmBranco,
                      UniversoJaExiste)
-from ..universes import Universo, RepositorioUniverso
+from universes import Universo, RepositorioUniverso
 from unittest.mock import Mock
 
 
@@ -53,23 +55,23 @@ def test_dicionario_nome_em_branco(dicionario_universo):
     dict_uni = dicionario_universo
     dict_uni['nome'] = ''
     with pytest.raises(UniversoNomeEmBranco):
-        dicionario_valido(dict_uni)
+        dicionario_valido_universo(dict_uni)
 
 def test_dicionario_nome_grande(dicionario_universo, nome_grande):
     dict_uni = dicionario_universo
     dict_uni['nome'] = nome_grande
     with pytest.raises(UniversoNomeGrande):
-        dicionario_valido(dict_uni)
+        dicionario_valido_universo(dict_uni)
 
 def test_dicionario_resumo_em_branco(dicionario_universo):
     dict_uni = dicionario_universo
     dict_uni['resumo'] = ''
     with pytest.raises(UniversoResumoEmBranco):
-        dicionario_valido(dict_uni)
+        dicionario_valido_universo(dict_uni)
 
 def test_resumo_valido(dicionario_universo):
     dict_uni = dicionario_universo
-    assert dicionario_valido(dict_uni) is None
+    assert dicionario_valido_universo(dict_uni) is None
 
 def test_universo_nao_valido(universo_test):
     mock_repositorio = Mock(spec=RepositorioUniverso)
@@ -215,9 +217,11 @@ def test_atualizar_novo_nome_ja_existe(dicionario_universo):
     mock_repositorio.existe_universo.assert_called_with(dicionario_universo['nome'])
 
 def test_atualizar_universo_nome_diferente(dicionario_universo, universo_test):
-    vel_uni = 'Universo 2'
+    vel_uni = 'Universo 1'
     mock_repositorio = Mock(spec=RepositorioUniverso)
     mock_repositorio.atualizar_universo.return_value = universo_test
+    dict_uni = copy.deepcopy(dicionario_universo)
+    dict_uni['nome'] = 'Universo 2'
     atualizar_uni = atualizar_universo(mock_repositorio, vel_uni, dicionario_universo)
     assert atualizar_uni == universo_test
     vel_cha = mock_repositorio.atualizar_universo.call_args[0][0]
